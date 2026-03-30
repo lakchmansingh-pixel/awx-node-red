@@ -1,9 +1,27 @@
 ---
-- name: Test Git Integration
+- name: Call Node-RED API
   hosts: localhost
   gather_facts: no
 
+  vars:
+    api_url: "http://192.168.88.128:31880/test"
+
   tasks:
-    - name: Debug message
+
+    - name: Send payload to Node-RED
+      uri:
+        url: "{{ api_url }}"
+        method: POST
+        body_format: json
+        body:
+          name: "Lakchman"
+          age: 28
+        headers:
+          Content-Type: "application/json"
+        return_content: yes
+        status_code: [200, 400]
+      register: api_response
+
+    - name: Show API Response
       debug:
-        msg: "GitHub + AWX working"
+        var: api_response.json
