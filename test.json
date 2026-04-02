@@ -1,0 +1,53 @@
+{
+  "project": {
+    "name": "automation-test",
+    "version": "1.0.0",
+    "active": true,
+    "created_date": "2026-04-02"
+  },
+  "owner": {
+    "id": 101,
+    "name": "Lakshman Singh",
+    "email": "lakshman.singh@example.com"
+  },
+  "environments": [
+    {
+      "name": "dev",
+      "url": "http://dev.example.com",
+      "status": "running"
+    },
+    {
+      "name": "test",
+      "url": "http://test.example.com",
+      "status": "stopped"
+    },
+    {
+      "name": "prod",
+      "url": "http://prod.example.com",
+      "status": "running"
+    }
+  ],
+  "services": [
+    {
+      "service_name": "node-red",
+      "port": 1880,
+      "enabled": true
+    },
+    {
+      "service_name": "awx",
+      "port": 8052,
+      "enabled": true
+    },
+    {
+      "service_name": "kubernetes",
+      "port": 6443,
+      "enabled": true
+    }
+  ],
+  "namespaces": ["ns12", "ns22", "ns32"],
+  "metadata": {
+    "tags": ["automation", "devops", "testing"],
+    "priority": "high",
+    "retry_count": 3
+  }
+}
