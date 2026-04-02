@@ -1,0 +1,31 @@
+- name: Call Node-RED API and save output
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    api_url: "http://192.168.88.128:31880/onboarding/test-qa"
+
+  tasks:
+
+    - name: Call Node-RED API
+      uri:
+        url: "{{ api_url }}"
+        method: POST
+        headers:
+          Content-Type: application/json
+        body_format: json
+        body:
+          namespaces:
+            - ns12
+            - ns22
+        return_content: yes
+      register: api_response
+
+    - name: Debug response
+      debug:
+        var: api_response.content
+
+    - name: Save output to YAML file
+      copy:
+        content: "{{ api_response.content }}"
+        dest: /tmp/output.yaml
